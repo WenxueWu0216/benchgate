@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+  - name: BenchGate DuckDB
+    uid: benchgate-duckdb
+    type: motherduck-duckdb-datasource
+    jsonData:
+      path: /data/benchgate.duckdb
+  # GKE: results live in BigQuery (service account via Workload Identity).
+  # - name: BenchGate BigQuery
+  #   type: grafana-bigquery-datasource
+  #   jsonData: {authenticationType: gce, defaultProject: PROJECT_ID}

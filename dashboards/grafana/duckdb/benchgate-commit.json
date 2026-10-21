@@ -1,0 +1,176 @@
+{
+  "uid": "bg-commit-duckdb",
+  "title": "BenchGate · commit (duckdb)",
+  "tags": [
+    "benchgate",
+    "commit"
+  ],
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "motherduck-duckdb-datasource",
+        "label": "Data source",
+        "hide": 0
+      },
+      {
+        "name": "commit",
+        "type": "query",
+        "label": "Head commit",
+        "datasource": {
+          "type": "motherduck-duckdb-datasource",
+          "uid": "${datasource}"
+        },
+        "refresh": 2,
+        "query": "SELECT DISTINCT head_commit FROM verdicts ORDER BY head_commit",
+        "definition": "SELECT DISTINCT head_commit FROM verdicts"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Gate verdict",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 8,
+        "h": 5
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT verdict, blocking, base_commit FROM verdicts WHERE head_commit = '$commit' ORDER BY created_at DESC LIMIT 1",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "fields": "/^verdict$/",
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background"
+      }
+    },
+    {
+      "id": 2,
+      "type": "barchart",
+      "title": "Relative change with 95% bootstrap CI",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 0,
+        "w": 16,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT workload || ' ' || metric AS test, 100 * ci_low AS ci_low_pct, 100 * rel_change AS change_pct, 100 * ci_high AS ci_high_pct FROM verdict_tests WHERE head_commit = '$commit' ORDER BY test",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 3,
+      "type": "table",
+      "title": "All tests",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 10,
+        "w": 24,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT workload, metric, base_median / 1000 AS base_us, cand_median / 1000 AS head_us, round(100 * rel_change, 2) AS change_pct, round(100 * ci_low, 2) AS ci_low_pct, round(100 * ci_high, 2) AS ci_high_pct, p_value, p_adjusted, verdict FROM verdict_tests WHERE head_commit = '$commit' ORDER BY workload, metric",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "type": "table",
+      "title": "Per-run p50 (every run of this commit)",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 18,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT workload, node, repetition, p50_ns / 1000 AS p50_us, p99_ns / 1000 AS p99_us, sched_jitter_p99_us, involuntary_cs, started_at FROM runs WHERE commit = '$commit' ORDER BY workload, started_at",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    }
+  ]
+}

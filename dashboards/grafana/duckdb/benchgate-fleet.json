@@ -1,0 +1,190 @@
+{
+  "uid": "bg-fleet-duckdb",
+  "title": "BenchGate · fleet (duckdb)",
+  "tags": [
+    "benchgate",
+    "fleet"
+  ],
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "motherduck-duckdb-datasource",
+        "label": "Data source",
+        "hide": 0
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "barchart",
+      "title": "Per-node offset vs fleet median (matrix p50)",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "WITH per_node AS ( SELECT node, quantile_cont(p50_ns, 0.5) AS p50 FROM runs WHERE workload = 'matrix' AND $__timeFilter(started_at) GROUP BY node) SELECT node, 100 * (p50 / (SELECT quantile_cont(p50, 0.5) FROM per_node) - 1) AS offset_pct FROM per_node ORDER BY node",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "options": {},
+      "description": "A node drifting away from the fleet (thermal, firmware, a missed tuning step) shows up here before it causes false alarms."
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Scheduling jitter p99 by node",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT started_at AS time, node, sched_jitter_p99_us FROM runs WHERE $__timeFilter(started_at) AND sched_jitter_p99_us IS NOT NULL ORDER BY time",
+          "format": "time_series"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "µs"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 3,
+      "type": "piechart",
+      "title": "Job outcomes",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT state, count(*) AS jobs FROM jobs WHERE $__timeFilter(created_at) GROUP BY state",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "type": "histogram",
+      "title": "Attempts per job (retries)",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT attempts FROM jobs WHERE $__timeFilter(created_at)",
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Runs per hour",
+      "datasource": {
+        "type": "motherduck-duckdb-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "motherduck-duckdb-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT date_trunc('hour', started_at) AS time, count(*) AS runs FROM runs WHERE $__timeFilter(started_at) GROUP BY 1 ORDER BY 1",
+          "format": "time_series"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    }
+  ]
+}
