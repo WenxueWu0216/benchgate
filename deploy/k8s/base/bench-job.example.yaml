@@ -1,0 +1,51 @@
+# Reference only: the orchestrator renders this per attempt
+# (benchgate/executors.py:render_job_manifest). Kept here so the shape of a
+# bench Job can be reviewed and `kubectl apply --dry-run`-ed by hand.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: bench-example-a0
+  namespace: benchgate
+  labels:
+    app.kubernetes.io/name: benchgate-bench
+    benchgate.io/role: bench
+spec:
+  backoffLimit: 0                 # retries belong to the orchestrator
+  activeDeadlineSeconds: 900
+  ttlSecondsAfterFinished: 600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: benchgate-bench
+        benchgate.io/role: bench
+    spec:
+      restartPolicy: Never
+      serviceAccountName: benchgate-bench
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - {key: kubernetes.io/hostname, operator: In, values: ["NODE"]}
+                  - {key: benchgate.io/bench-node, operator: In, values: ["true"]}
+        podAntiAffinity:          # Kubernetes-level "one bench pod per node"
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels: {benchgate.io/role: bench}
+              topologyKey: kubernetes.io/hostname
+      tolerations:
+        - {key: benchgate.io/dedicated, operator: Equal, value: bench, effect: NoSchedule}
+      containers:
+        - name: runner
+          image: benchgate:dev
+          command: ["python", "-m", "benchgate.runner"]
+          env:
+            - name: BENCHGATE_JOB_SPEC
+              value: '{"commit":"dev","workload":"matrix","repetitions":5,"iterations":200}'
+            - name: BENCHGATE_NODE_NAME
+              valueFrom: {fieldRef: {fieldPath: spec.nodeName}}
+          resources:              # Guaranteed QoS + integer CPUs => exclusive cores
+            requests: {cpu: "2", memory: 1Gi}
+            limits: {cpu: "2", memory: 1Gi}
