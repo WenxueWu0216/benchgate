@@ -1,0 +1,1935 @@
+{
+  "synthetic": [
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 1,
+      "rate": 0.001,
+      "ci95": [
+        0.0001765418290572713,
+        0.0056427029601604705
+      ],
+      "verdicts": {
+        "pass": 998,
+        "regression": 1,
+        "improvement": 1,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 295,
+      "rate": 0.9833333333333333,
+      "ci95": [
+        0.9615840563782944,
+        0.9928606279572277
+      ],
+      "verdicts": {
+        "pass": 5,
+        "regression": 295,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 198,
+      "rate": 0.66,
+      "ci95": [
+        0.6046734114246599,
+        0.7112806909760647
+      ],
+      "verdicts": {
+        "pass": 102,
+        "regression": 198,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 299,
+      "rate": 0.9966666666666667,
+      "ci95": [
+        0.9813628354450568,
+        0.9994113574238592
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 299,
+        "improvement": 0,
+        "inconclusive": 1
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 1,
+      "rate": 0.001,
+      "ci95": [
+        0.0001765418290572713,
+        0.0056427029601604705
+      ],
+      "verdicts": {
+        "pass": 996,
+        "regression": 1,
+        "improvement": 3,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 296,
+      "rate": 0.9866666666666667,
+      "ci95": [
+        0.9662239391535502,
+        0.9948031223153205
+      ],
+      "verdicts": {
+        "pass": 4,
+        "regression": 296,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 0,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.003826898586390522
+      ],
+      "verdicts": {
+        "pass": 1000,
+        "regression": 0,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 8,
+      "rate": 0.008,
+      "ci95": [
+        0.004059147003819634,
+        0.01570652120518864
+      ],
+      "verdicts": {
+        "pass": 385,
+        "regression": 8,
+        "improvement": 11,
+        "inconclusive": 596
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 27,
+      "rate": 0.09,
+      "ci95": [
+        0.06258980739496589,
+        0.12777780520317736
+      ],
+      "verdicts": {
+        "pass": 46,
+        "regression": 27,
+        "improvement": 0,
+        "inconclusive": 227
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 204,
+      "rate": 0.68,
+      "ci95": [
+        0.6252228520235207,
+        0.7302255131772947
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 204,
+        "improvement": 0,
+        "inconclusive": 96
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 286,
+      "rate": 0.9533333333333334,
+      "ci95": [
+        0.9232019646862172,
+        0.9720013254491692
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 286,
+        "improvement": 0,
+        "inconclusive": 14
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 9,
+      "rate": 0.03,
+      "ci95": [
+        0.015861673205964575,
+        0.05602315099190695
+      ],
+      "verdicts": {
+        "pass": 54,
+        "regression": 9,
+        "improvement": 0,
+        "inconclusive": 237
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 64,
+      "rate": 0.21333333333333335,
+      "ci95": [
+        0.1707518836854917,
+        0.26316368284654346
+      ],
+      "verdicts": {
+        "pass": 10,
+        "regression": 64,
+        "improvement": 0,
+        "inconclusive": 226
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 206,
+      "rate": 0.6866666666666666,
+      "ci95": [
+        0.6320966534895827,
+        0.7365164659779293
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 206,
+        "improvement": 0,
+        "inconclusive": 94
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 9,
+      "rate": 0.009,
+      "ci95": [
+        0.004742006589011481,
+        0.017016007822824013
+      ],
+      "verdicts": {
+        "pass": 761,
+        "regression": 9,
+        "improvement": 7,
+        "inconclusive": 223
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 114,
+      "rate": 0.38,
+      "ci95": [
+        0.32691781564606526,
+        0.4361166075533913
+      ],
+      "verdicts": {
+        "pass": 79,
+        "regression": 114,
+        "improvement": 0,
+        "inconclusive": 107
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 297,
+      "rate": 0.99,
+      "ci95": [
+        0.9710159953649371,
+        0.9965934432372818
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 297,
+        "improvement": 0,
+        "inconclusive": 3
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 21,
+      "rate": 0.07,
+      "ci95": [
+        0.04623659396060609,
+        0.10463675583744661
+      ],
+      "verdicts": {
+        "pass": 118,
+        "regression": 21,
+        "improvement": 2,
+        "inconclusive": 159
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 175,
+      "rate": 0.5833333333333334,
+      "ci95": [
+        0.5268345519290606,
+        0.6377248764046503
+      ],
+      "verdicts": {
+        "pass": 6,
+        "regression": 175,
+        "improvement": 0,
+        "inconclusive": 119
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 295,
+      "rate": 0.9833333333333333,
+      "ci95": [
+        0.9615840563782944,
+        0.9928606279572277
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 295,
+        "improvement": 0,
+        "inconclusive": 5
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 7,
+      "rate": 0.007,
+      "ci95": [
+        0.0033948250792319975,
+        0.01437849692694906
+      ],
+      "verdicts": {
+        "pass": 949,
+        "regression": 7,
+        "improvement": 10,
+        "inconclusive": 34
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 222,
+      "rate": 0.74,
+      "ci95": [
+        0.6875509670609357,
+        0.7863801865401512
+      ],
+      "verdicts": {
+        "pass": 60,
+        "regression": 222,
+        "improvement": 0,
+        "inconclusive": 18
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 53,
+      "rate": 0.17666666666666667,
+      "ci95": [
+        0.13767606902581717,
+        0.2238333490393852
+      ],
+      "verdicts": {
+        "pass": 187,
+        "regression": 53,
+        "improvement": 0,
+        "inconclusive": 60
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 277,
+      "rate": 0.9233333333333333,
+      "ci95": [
+        0.8875891334382622,
+        0.9483727624969882
+      ],
+      "verdicts": {
+        "pass": 2,
+        "regression": 277,
+        "improvement": 0,
+        "inconclusive": 21
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 3,
+      "rate": 0.003,
+      "ci95": [
+        0.0010207654054443255,
+        0.008783171789427854
+      ],
+      "verdicts": {
+        "pass": 17,
+        "regression": 3,
+        "improvement": 0,
+        "inconclusive": 980
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 9,
+      "rate": 0.03,
+      "ci95": [
+        0.015861673205964575,
+        0.05602315099190695
+      ],
+      "verdicts": {
+        "pass": 4,
+        "regression": 9,
+        "improvement": 0,
+        "inconclusive": 287
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 36,
+      "rate": 0.12,
+      "ci95": [
+        0.08795033863213894,
+        0.16165866816614016
+      ],
+      "verdicts": {
+        "pass": 1,
+        "regression": 36,
+        "improvement": 0,
+        "inconclusive": 263
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 131,
+      "rate": 0.43666666666666665,
+      "ci95": [
+        0.38169301003457207,
+        0.4932418244318077
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 131,
+        "improvement": 0,
+        "inconclusive": 169
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 2,
+      "rate": 0.006666666666666667,
+      "ci95": [
+        0.0018301100329710784,
+        0.023978074231461442
+      ],
+      "verdicts": {
+        "pass": 2,
+        "regression": 2,
+        "improvement": 1,
+        "inconclusive": 295
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 1,
+      "rate": 0.0033333333333333335,
+      "ci95": [
+        0.0005886425761407379,
+        0.018637164554943353
+      ],
+      "verdicts": {
+        "pass": 4,
+        "regression": 1,
+        "improvement": 1,
+        "inconclusive": 294
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 5,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 4,
+      "rate": 0.013333333333333334,
+      "ci95": [
+        0.005196877684679467,
+        0.03377606084644991
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 4,
+        "improvement": 0,
+        "inconclusive": 296
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 5,
+      "rate": 0.005,
+      "ci95": [
+        0.0021375039957652504,
+        0.011651125604761368
+      ],
+      "verdicts": {
+        "pass": 42,
+        "regression": 5,
+        "improvement": 1,
+        "inconclusive": 952
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 15,
+      "rate": 0.05,
+      "ci95": [
+        0.030531367290852585,
+        0.08084771970710952
+      ],
+      "verdicts": {
+        "pass": 7,
+        "regression": 15,
+        "improvement": 0,
+        "inconclusive": 278
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 102,
+      "rate": 0.34,
+      "ci95": [
+        0.2887193090239354,
+        0.3953265885753401
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 102,
+        "improvement": 0,
+        "inconclusive": 198
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 247,
+      "rate": 0.8233333333333334,
+      "ci95": [
+        0.7761666509606149,
+        0.8623239309741828
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 247,
+        "improvement": 0,
+        "inconclusive": 53
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 5,
+      "rate": 0.016666666666666666,
+      "ci95": [
+        0.0071393720427721935,
+        0.038415943621705605
+      ],
+      "verdicts": {
+        "pass": 8,
+        "regression": 5,
+        "improvement": 2,
+        "inconclusive": 285
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 4,
+      "rate": 0.013333333333333334,
+      "ci95": [
+        0.005196877684679467,
+        0.03377606084644991
+      ],
+      "verdicts": {
+        "pass": 11,
+        "regression": 4,
+        "improvement": 0,
+        "inconclusive": 285
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 2,
+      "rate": 0.006666666666666667,
+      "ci95": [
+        0.0018301100329710784,
+        0.023978074231461442
+      ],
+      "verdicts": {
+        "pass": 8,
+        "regression": 2,
+        "improvement": 2,
+        "inconclusive": 288
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 1000,
+      "flagged": 11,
+      "rate": 0.011,
+      "ci95": [
+        0.006153110089114165,
+        0.01958959672837577
+      ],
+      "verdicts": {
+        "pass": 81,
+        "regression": 11,
+        "improvement": 6,
+        "inconclusive": 902
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 37,
+      "rate": 0.12333333333333334,
+      "ci95": [
+        0.09081679971281557,
+        0.1653745842188119
+      ],
+      "verdicts": {
+        "pass": 15,
+        "regression": 37,
+        "improvement": 3,
+        "inconclusive": 245
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 222,
+      "rate": 0.74,
+      "ci95": [
+        0.6875509670609357,
+        0.7863801865401512
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 222,
+        "improvement": 0,
+        "inconclusive": 78
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.1,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 298,
+      "rate": 0.9933333333333333,
+      "ci95": [
+        0.9760219257685385,
+        0.9981698899670288
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 298,
+        "improvement": 0,
+        "inconclusive": 2
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.02,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 2,
+      "rate": 0.006666666666666667,
+      "ci95": [
+        0.0018301100329710784,
+        0.023978074231461442
+      ],
+      "verdicts": {
+        "pass": 20,
+        "regression": 2,
+        "improvement": 1,
+        "inconclusive": 277
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.05,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 3,
+      "rate": 0.01,
+      "ci95": [
+        0.0034065567627181124,
+        0.028984004635062833
+      ],
+      "verdicts": {
+        "pass": 17,
+        "regression": 3,
+        "improvement": 0,
+        "inconclusive": 280
+      }
+    },
+    {
+      "model": "sandbox-fit-matrix",
+      "effect": 0.1,
+      "mode": "tail",
+      "n_runs": 20,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 3,
+      "rate": 0.01,
+      "ci95": [
+        0.0034065567627181124,
+        0.028984004635062833
+      ],
+      "verdicts": {
+        "pass": 24,
+        "regression": 3,
+        "improvement": 1,
+        "inconclusive": 272
+      }
+    }
+  ],
+  "empirical": [
+    {
+      "workload": "matrix",
+      "mode": "none",
+      "effect": 0.0,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 1,
+      "rate": 0.005,
+      "ci95": [
+        0.0008831459893662054,
+        0.02777439986977148
+      ],
+      "pool_clean": 120,
+      "pool_slow": null
+    },
+    {
+      "workload": "matrix",
+      "mode": "tail",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 1,
+      "rate": 0.005,
+      "ci95": [
+        0.0008831459893662054,
+        0.02777439986977148
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "matrix",
+      "mode": "tail",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 13,
+      "rate": 0.065,
+      "ci95": [
+        0.03837598764975976,
+        0.10802003749917945
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "matrix",
+      "mode": "uniform",
+      "effect": 0.02,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 10,
+      "rate": 0.05,
+      "ci95": [
+        0.027382349028644986,
+        0.08957905629784384
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "matrix",
+      "mode": "uniform",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 81,
+      "rate": 0.405,
+      "ci95": [
+        0.3393765611244294,
+        0.4742041800000517
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "matrix",
+      "mode": "uniform",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 147,
+      "rate": 0.735,
+      "ci95": [
+        0.6698229773344888,
+        0.7913193998839003
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "planner",
+      "mode": "none",
+      "effect": 0.0,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 2,
+      "rate": 0.01,
+      "ci95": [
+        0.0027466006037749346,
+        0.03572248519617954
+      ],
+      "pool_clean": 120,
+      "pool_slow": null
+    },
+    {
+      "workload": "planner",
+      "mode": "tail",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 20,
+      "rate": 0.1,
+      "ci95": [
+        0.06566994117157123,
+        0.14940686356308552
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "planner",
+      "mode": "tail",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 42,
+      "rate": 0.21,
+      "ci95": [
+        0.15928329527863416,
+        0.271647388153992
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "planner",
+      "mode": "uniform",
+      "effect": 0.02,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 10,
+      "rate": 0.05,
+      "ci95": [
+        0.027382349028644986,
+        0.08957905629784384
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "planner",
+      "mode": "uniform",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 19,
+      "rate": 0.095,
+      "ci95": [
+        0.06166261364986359,
+        0.14360265114397636
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "planner",
+      "mode": "uniform",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 95,
+      "rate": 0.475,
+      "ci95": [
+        0.4069150074009861,
+        0.54402729289493
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "pointcloud",
+      "mode": "none",
+      "effect": 0.0,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 2,
+      "rate": 0.01,
+      "ci95": [
+        0.0027466006037749346,
+        0.03572248519617954
+      ],
+      "pool_clean": 120,
+      "pool_slow": null
+    },
+    {
+      "workload": "pointcloud",
+      "mode": "tail",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 3,
+      "rate": 0.015,
+      "ci95": [
+        0.005114145184492387,
+        0.043166480556278884
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "pointcloud",
+      "mode": "tail",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 5,
+      "rate": 0.025,
+      "ci95": [
+        0.010724561470787711,
+        0.05717914415161715
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "pointcloud",
+      "mode": "uniform",
+      "effect": 0.02,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 4,
+      "rate": 0.02,
+      "ci95": [
+        0.007804300176394188,
+        0.050287865505193874
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "pointcloud",
+      "mode": "uniform",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 93,
+      "rate": 0.465,
+      "ci95": [
+        0.39718443070423204,
+        0.5341347897100506
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    },
+    {
+      "workload": "pointcloud",
+      "mode": "uniform",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 200,
+      "flagged": 151,
+      "rate": 0.755,
+      "ci95": [
+        0.6909563161285153,
+        0.809432220853141
+      ],
+      "pool_clean": 120,
+      "pool_slow": 40
+    }
+  ],
+  "budget": [
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 600,
+      "trials": 300,
+      "flagged": 6,
+      "rate": 0.02,
+      "ci95": [
+        0.009197506067771085,
+        0.042940186730055147
+      ],
+      "verdicts": {
+        "pass": 165,
+        "regression": 6,
+        "improvement": 2,
+        "inconclusive": 127
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 600,
+      "trials": 300,
+      "flagged": 40,
+      "rate": 0.13333333333333333,
+      "ci95": [
+        0.09946587636064691,
+        0.17647263897102589
+      ],
+      "verdicts": {
+        "pass": 55,
+        "regression": 40,
+        "improvement": 0,
+        "inconclusive": 205
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 5,
+      "n_iter": 600,
+      "trials": 300,
+      "flagged": 215,
+      "rate": 0.7166666666666667,
+      "ci95": [
+        0.6631845423956875,
+        0.7646699712719605
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 215,
+        "improvement": 0,
+        "inconclusive": 85
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 3,
+      "rate": 0.01,
+      "ci95": [
+        0.0034065567627181124,
+        0.028984004635062833
+      ],
+      "verdicts": {
+        "pass": 230,
+        "regression": 3,
+        "improvement": 1,
+        "inconclusive": 66
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 100,
+      "rate": 0.3333333333333333,
+      "ci95": [
+        0.2823925597902556,
+        0.3884885835423229
+      ],
+      "verdicts": {
+        "pass": 91,
+        "regression": 100,
+        "improvement": 0,
+        "inconclusive": 109
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 10,
+      "n_iter": 300,
+      "trials": 300,
+      "flagged": 296,
+      "rate": 0.9866666666666667,
+      "ci95": [
+        0.9662239391535502,
+        0.9948031223153205
+      ],
+      "verdicts": {
+        "pass": 2,
+        "regression": 296,
+        "improvement": 0,
+        "inconclusive": 2
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 150,
+      "trials": 300,
+      "flagged": 3,
+      "rate": 0.01,
+      "ci95": [
+        0.0034065567627181124,
+        0.028984004635062833
+      ],
+      "verdicts": {
+        "pass": 258,
+        "regression": 3,
+        "improvement": 2,
+        "inconclusive": 37
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 150,
+      "trials": 300,
+      "flagged": 201,
+      "rate": 0.67,
+      "ci95": [
+        0.6149348137768542,
+        0.7207664200239157
+      ],
+      "verdicts": {
+        "pass": 63,
+        "regression": 201,
+        "improvement": 0,
+        "inconclusive": 36
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 20,
+      "n_iter": 150,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "mode": "uniform",
+      "n_runs": 30,
+      "n_iter": 100,
+      "trials": 300,
+      "flagged": 1,
+      "rate": 0.0033333333333333335,
+      "ci95": [
+        0.0005886425761407379,
+        0.018637164554943353
+      ],
+      "verdicts": {
+        "pass": 273,
+        "regression": 1,
+        "improvement": 2,
+        "inconclusive": 24
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "mode": "uniform",
+      "n_runs": 30,
+      "n_iter": 100,
+      "trials": 300,
+      "flagged": 251,
+      "rate": 0.8366666666666667,
+      "ci95": [
+        0.7906259121631731,
+        0.8741941783050182
+      ],
+      "verdicts": {
+        "pass": 39,
+        "regression": 251,
+        "improvement": 0,
+        "inconclusive": 10
+      }
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "mode": "uniform",
+      "n_runs": 30,
+      "n_iter": 100,
+      "trials": 300,
+      "flagged": 300,
+      "rate": 1.0,
+      "ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ],
+      "verdicts": {
+        "pass": 0,
+        "regression": 300,
+        "improvement": 0,
+        "inconclusive": 0
+      }
+    }
+  ],
+  "confirmation": [
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.0,
+      "n_runs": 10,
+      "trials": 5000,
+      "single_rate": 0.0024,
+      "confirmed_rate": 0.0,
+      "single_flagged": 12,
+      "confirmed_flagged": 0,
+      "confirmed_ci95": [
+        0.0,
+        0.000767730137580694
+      ]
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.02,
+      "n_runs": 10,
+      "trials": 300,
+      "single_rate": 1.0,
+      "confirmed_rate": 1.0,
+      "single_flagged": 300,
+      "confirmed_flagged": 300,
+      "confirmed_ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ]
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 300,
+      "single_rate": 1.0,
+      "confirmed_rate": 1.0,
+      "single_flagged": 300,
+      "confirmed_flagged": 300,
+      "confirmed_ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ]
+    },
+    {
+      "model": "tuned-bare-metal",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 300,
+      "single_rate": 1.0,
+      "confirmed_rate": 1.0,
+      "single_flagged": 300,
+      "confirmed_flagged": 300,
+      "confirmed_ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ]
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.0,
+      "n_runs": 10,
+      "trials": 5000,
+      "single_rate": 0.0084,
+      "confirmed_rate": 0.0,
+      "single_flagged": 42,
+      "confirmed_flagged": 0,
+      "confirmed_ci95": [
+        0.0,
+        0.000767730137580694
+      ]
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.02,
+      "n_runs": 10,
+      "trials": 300,
+      "single_rate": 0.4,
+      "confirmed_rate": 0.15666666666666668,
+      "single_flagged": 120,
+      "confirmed_flagged": 47,
+      "confirmed_ci95": [
+        0.11990622028482688,
+        0.20210893498028493
+      ]
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.05,
+      "n_runs": 10,
+      "trials": 300,
+      "single_rate": 0.99,
+      "confirmed_rate": 0.9766666666666667,
+      "single_flagged": 297,
+      "confirmed_flagged": 293,
+      "confirmed_ci95": [
+        0.952627445667121,
+        0.9886524844017043
+      ]
+    },
+    {
+      "model": "untuned-cloud-vm",
+      "effect": 0.1,
+      "n_runs": 10,
+      "trials": 300,
+      "single_rate": 1.0,
+      "confirmed_rate": 1.0,
+      "single_flagged": 300,
+      "confirmed_flagged": 300,
+      "confirmed_ci95": [
+        0.9873565700022643,
+        0.9999999999999999
+      ]
+    }
+  ],
+  "fitted_models": [
+    {
+      "name": "sandbox-fit-pointcloud",
+      "base_ns": 1000000.0,
+      "sigma_iter": 0.07337179162086362,
+      "sigma_run": 0.04123754974130424,
+      "p_contaminated": 0.09166666666666666,
+      "contamination_mean": 0.31283049291022197,
+      "contamination_frac": 1.0,
+      "p_spike": 0.10155555555555557,
+      "spike_scale": 1.0
+    },
+    {
+      "name": "sandbox-fit-matrix",
+      "base_ns": 1000000.0,
+      "sigma_iter": 0.08836135924510624,
+      "sigma_run": 0.033519382529612805,
+      "p_contaminated": 0.1,
+      "contamination_mean": 0.5685884317697391,
+      "contamination_frac": 1.0,
+      "p_spike": 0.08666666666666667,
+      "spike_scale": 1.0
+    }
+  ],
+  "sandbox_env": {
+    "hostname": "vm",
+    "node_name": "vm",
+    "kernel": "6.18.44-fc-v139",
+    "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "nproc": 4,
+    "affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "governor": null,
+    "smt": "notsupported",
+    "no_turbo": null,
+    "isolcpus": null,
+    "nohz_full": null,
+    "loadavg": "0.02 0.19 0.16 1/142 10120"
+  }
+}
