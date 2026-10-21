@@ -1,0 +1,19 @@
+#!/usr/bin/env bpftrace
+// Off-CPU time for the benchmark process (comm "benchgate_work"), split by
+// whether it left the CPU voluntarily (sleep/IO) or was preempted.
+tracepoint:sched:sched_switch /args->prev_comm == "benchgate_work"/
+{
+  @start[args->prev_pid] = nsecs;
+  @preempted[args->prev_pid] = (args->prev_state == 0);
+}
+
+tracepoint:sched:sched_switch /@start[args->next_pid]/
+{
+  $d = (nsecs - @start[args->next_pid]) / 1000;
+  if (@preempted[args->next_pid]) { @preempt_us = hist($d); }
+  else { @sleep_us = hist($d); }
+  delete(@start[args->next_pid]);
+  delete(@preempted[args->next_pid]);
+}
+
+END { clear(@start); clear(@preempted); }
