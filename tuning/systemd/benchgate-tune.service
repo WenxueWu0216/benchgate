@@ -1,0 +1,13 @@
+[Unit]
+Description=BenchGate bench node runtime tuning (governor, turbo, SMT, THP)
+After=multi-user.target
+Before=kubelet.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/benchgate-tune.sh
+ExecStartPost=/usr/local/sbin/benchgate-irq-pin.sh
+
+[Install]
+WantedBy=multi-user.target

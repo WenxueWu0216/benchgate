@@ -1,0 +1,9 @@
+# Tune bench nodes for low run-to-run variance.
+#   ansible-playbook -i inventory.ini site.yml            # apply (reboots if needed)
+#   ansible-playbook -i inventory.ini site.yml --check    # dry run
+# Then measure: tuning/measure_variance.sh (before AND after), see tuning/README.md.
+- name: BenchGate bench node tuning
+  hosts: bench
+  become: true
+  roles:
+    - benchnode

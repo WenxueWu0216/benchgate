@@ -1,0 +1,14 @@
+bench_cpus: "2-7"
+housekeeping_cpus: "0-1"
+# Disabling SMT halves capacity but removes the largest single source of
+# cross-run interference (a sibling hyperthread sharing L1/L2 and ports).
+disable_smt: true
+# Turbo makes frequency depend on temperature and on how many cores are busy.
+disable_turbo: true
+cpu_governor: performance
+# Deep C-states add wakeup latency spikes; cap at C1.
+max_cstate: 1
+disable_thp: true            # khugepaged compaction stalls
+disable_numa_balancing: true
+disable_aslr_for_bench: false  # optional: reproducible layout, at a security cost
+reboot_if_needed: true
