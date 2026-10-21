@@ -1,0 +1,48 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build C++ workloads and trace parser
+        run: |
+          cmake -S workloads -B workloads/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build workloads/build -j"$(nproc)"
+          cd workloads/build && ctest --output-on-failure
+      - name: Install
+        run: pip install -e ".[dev,bigquery]"
+      - name: Lint
+        run: ruff check benchgate tests
+      - name: Unit + e2e tests
+        run: pytest -q
+      - name: Validate manifests and dashboards
+        run: |
+          kubectl kustomize deploy/k8s/overlays/kind > /dev/null
+          kubectl kustomize deploy/k8s/overlays/gke > /dev/null
+          python -m benchgate.dashboards --check dashboards/grafana
+
+  kind-e2e:
+    # Real cluster, real Jobs and Leases: two comparisons race for two bench nodes.
+    runs-on: ubuntu-24.04
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install kind
+        run: |
+          curl -fsSLo kind https://kind.sigs.k8s.io/dl/v0.24.0/kind-linux-amd64
+          chmod +x kind && sudo mv kind /usr/local/bin/kind
+      - name: kind end-to-end
+        run: ./deploy/kind/e2e.sh
+      - name: Dump state on failure
+        if: failure()
+        run: |
+          kubectl -n benchgate get all,leases -o wide || true
+          kubectl -n benchgate logs deploy/benchgate-orchestrator --tail=300 || true

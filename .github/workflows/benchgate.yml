@@ -1,0 +1,111 @@
+# The merge gate. Posts a "BenchGate" check run on the PR head commit.
+# Make it blocking: Settings -> Rules -> require status check "BenchGate".
+#
+# Two modes:
+#  * fleet:  secret BENCHGATE_URL is set -> images for base and head are pushed
+#            to GHCR and the service runs paired jobs on tuned bench nodes.
+#  * local:  no fleet configured -> base and head are built here and run
+#            paired (ABBA) on one pinned CPU of the Actions runner. Noisy
+#            (shared VM), so treat results as a demo, not a measurement.
+name: benchgate
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      inject_pct:
+        description: "Inject a uniform slowdown (%) into head to demo blocking"
+        default: "0"
+
+permissions:
+  contents: read
+  checks: write
+  packages: write
+
+concurrency:
+  group: benchgate-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+  HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  # Job-level so that step `if:` conditions can see it.
+  BENCHGATE_URL: ${{ secrets.BENCHGATE_URL }}
+  INJECT_PCT: ${{ github.event.inputs.inject_pct || '0' }}
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+
+      - name: Fleet mode - push images for base and head
+        if: env.BENCHGATE_URL != ''
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          img=ghcr.io/${{ github.repository }}/benchgate
+          for sha in "$BASE_SHA" "$HEAD_SHA"; do
+            if ! docker manifest inspect "$img:$sha" >/dev/null 2>&1; then
+              git worktree add "/tmp/wt-$sha" "$sha"
+              docker build -t "$img:$sha" "/tmp/wt-$sha" && docker push "$img:$sha"
+            fi
+          done
+      - name: Fleet mode - request verdict
+        if: env.BENCHGATE_URL != ''
+        env:
+          BENCHGATE_TOKEN: ${{ secrets.BENCHGATE_TOKEN }}
+        run: |
+          img=ghcr.io/${{ github.repository }}/benchgate
+          benchgate gate --base "$BASE_SHA" --head "$HEAD_SHA" \
+            --base-image "$img:$BASE_SHA" --head-image "$img:$HEAD_SHA" \
+            --out verdict.json --plot verdict.png || echo "rc=$?" >> "$GITHUB_ENV"
+
+      - name: Local mode - build base and head
+        if: env.BENCHGATE_URL == ''
+        run: |
+          for which in base head; do
+            sha=$([ $which = base ] && echo "$BASE_SHA" || echo "$HEAD_SHA")
+            git worktree add "/tmp/$which" "$sha"
+            src="/tmp/$which/workloads"
+            # A base commit from before the workloads existed: fall back to head's.
+            [ -d "$src" ] || src=workloads
+            cmake -S "$src" -B "/tmp/build-$which" -DCMAKE_BUILD_TYPE=Release >/dev/null
+            cmake --build "/tmp/build-$which" -j"$(nproc)" --target benchgate_workloads >/dev/null
+          done
+      - name: Local mode - paired run on one pinned CPU
+        if: env.BENCHGATE_URL == ''
+        run: |
+          benchgate gate-local --base "$BASE_SHA" --head "$HEAD_SHA" \
+            --base-binary /tmp/build-base/benchgate_workloads \
+            --head-binary /tmp/build-head/benchgate_workloads \
+            --cpus "$(( $(nproc) - 1 ))" --repetitions 12 --iterations 200 \
+            $( [ "$INJECT_PCT" != "0" ] && echo "--inject-mode uniform --inject-pct $INJECT_PCT" ) \
+            --out verdict.json --plot verdict.png || echo "rc=$?" >> "$GITHUB_ENV"
+
+      - name: Upload verdict
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchgate-verdict
+          path: |
+            verdict.json
+            verdict.png
+
+      - name: Post merge-blocking check run
+        if: always() && hashFiles('verdict.json') != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          benchgate check --verdict verdict.json --base "$BASE_SHA" --head "$HEAD_SHA" \
+            --details-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+      - name: Fail the job on a blocking verdict
+        run: |
+          if [ "${rc:-0}" = "1" ]; then echo "BenchGate: blocking regression"; exit 1; fi
+          if [ "${rc:-0}" != "0" ]; then echo "BenchGate: gate error"; exit 1; fi
