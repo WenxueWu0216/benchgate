@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchgate"
+version = "0.1.0"
+description = "Performance regression benchmarking platform with a statistically sound merge gate"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "duckdb>=0.10", "matplotlib>=3.7"]
+
+[project.optional-dependencies]
+bigquery = ["google-cloud-bigquery>=3.10"]
+dev = ["pytest>=7", "ruff>=0.4", "ruptures>=1.1", "pyyaml>=6"]
+
+[project.scripts]
+benchgate = "benchgate.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["benchgate*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: runs real workloads"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B"]
+# B905: zip(xs, xs[1:]) pairs neighbours; strict=True would be wrong there.
+ignore = ["E731", "B008", "B905", "B027"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["benchgate"]
+known-local-folder = ["fakes"]
+force-sort-within-sections = true
