@@ -1,0 +1,4 @@
+ benchgate_work  1234 [002]  100.000000: sched:sched_switch: prev_comm=benchgate_work prev_pid=1234 prev_prio=120 prev_state=R ==> next_comm=kworker/2:1 next_pid=77 next_prio=120
+    kworker/2:1    77 [002]  100.000150: sched:sched_switch: prev_comm=kworker/2:1 prev_pid=77 prev_prio=120 prev_state=S ==> next_comm=benchgate_work next_pid=1234 next_prio=120
+ benchgate_work  1234 [002]  100.010000: sched:sched_switch: prev_comm=benchgate_work prev_pid=1234 prev_prio=120 prev_state=S ==> next_comm=swapper/2 next_pid=0 next_prio=120
+      swapper/3     0 [003]  100.012000: sched:sched_switch: prev_comm=swapper/3 prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=benchgate_work next_pid=1234 next_prio=120
