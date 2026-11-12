@@ -1,0 +1,24 @@
+#!/usr/bin/env bpftrace
+// Run-queue latency: time from a task becoming runnable to running.
+// A healthy isolated bench core shows almost everything in the [0,4) us buckets.
+#include <linux/sched.h>
+
+tracepoint:sched:sched_wakeup,
+tracepoint:sched:sched_wakeup_new
+{
+  @qtime[args->pid] = nsecs;
+}
+
+tracepoint:sched:sched_switch
+{
+  if (args->prev_state == TASK_RUNNING) {
+    @qtime[args->prev_pid] = nsecs;   // preempted: back on the run queue
+  }
+  $ns = @qtime[args->next_pid];
+  if ($ns) {
+    @usecs = hist((nsecs - $ns) / 1000);
+  }
+  delete(@qtime[args->next_pid]);
+}
+
+END { clear(@qtime); }
