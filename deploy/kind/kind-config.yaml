@@ -1,0 +1,27 @@
+# Local dev cluster: 1 control plane, 1 "infra" worker for the orchestrator,
+# 2 bench nodes. Bench nodes are labelled and tainted exactly like the GKE
+# bench node pool so the same manifests schedule identically in both places.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: benchgate
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+    labels:
+      benchgate.io/bench-node: "true"
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          taints:
+            - {key: benchgate.io/dedicated, value: bench, effect: NoSchedule}
+  - role: worker
+    labels:
+      benchgate.io/bench-node: "true"
+    kubeadmConfigPatches:
+      - |
+        kind: JoinConfiguration
+        nodeRegistration:
+          taints:
+            - {key: benchgate.io/dedicated, value: bench, effect: NoSchedule}

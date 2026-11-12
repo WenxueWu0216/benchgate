@@ -1,0 +1,6 @@
+# kind: the image is side-loaded with `kind load docker-image benchgate:dev`,
+# storage is kind's default local-path provisioner, results go to DuckDB.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base

@@ -1,0 +1,10 @@
+# Kubelet + kernel settings for the GKE bench node pool.
+# Static CPU manager: Guaranteed pods with integer CPU requests get exclusive
+# cores; system daemons are confined to the reserved CPUs.
+kubeletConfig:
+  cpuManagerPolicy: static
+  cpuCFSQuota: false          # no CFS throttling artefacts inside a run
+linuxConfig:
+  sysctl:
+    kernel.numa_balancing: "0"   # no page migration mid-benchmark
+  hugepageConfig: {}

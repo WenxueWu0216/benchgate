@@ -1,0 +1,39 @@
+# GKE: images from Artifact Registry, results in BigQuery via Workload
+# Identity, bench node pool created by deploy/gke/create-cluster.sh.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+images:
+  - name: benchgate
+    newName: us-docker.pkg.dev/PROJECT_ID/benchgate/benchgate
+    newTag: latest
+patches:
+  - target: {kind: ServiceAccount, name: benchgate-orchestrator}
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          iam.gke.io/gcp-service-account: benchgate-orchestrator@PROJECT_ID.iam.gserviceaccount.com
+  - target: {kind: Deployment, name: benchgate-orchestrator}
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/env/0/value
+        value: bigquery://PROJECT_ID/benchgate
+      - op: replace
+        path: /spec/template/spec/containers/0/env/2/value
+        value: us-docker.pkg.dev/PROJECT_ID/benchgate/benchgate:latest
+      - op: add
+        path: /spec/template/spec/containers/0/env/-
+        value: {name: BENCHGATE_BENCH_CPUS, value: "2,3"}
+      - op: add
+        path: /spec/template/spec/nodeSelector
+        value: {cloud.google.com/gke-nodepool: default-pool}
+  - target: {kind: Service, name: benchgate}
+    patch: |-
+      - op: add
+        path: /metadata/annotations
+        value: {networking.gke.io/load-balancer-type: Internal}
+      - op: add
+        path: /spec/type
+        value: LoadBalancer
