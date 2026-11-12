@@ -1,0 +1,81 @@
+- name: Kernel command line for CPU isolation
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub.d/90-benchgate.cfg
+    create: true
+    mode: "0644"
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    line: >-
+      GRUB_CMDLINE_LINUX_DEFAULT="$GRUB_CMDLINE_LINUX_DEFAULT
+      isolcpus=managed_irq,domain,{{ bench_cpus }}
+      nohz_full={{ bench_cpus }} rcu_nocbs={{ bench_cpus }} rcu_nocb_poll
+      irqaffinity={{ housekeeping_cpus }}
+      intel_idle.max_cstate={{ max_cstate }} processor.max_cstate={{ max_cstate }}
+      {{ 'nosmt' if disable_smt else '' }}
+      {{ 'transparent_hugepage=never' if disable_thp else '' }}
+      nosoftlockup tsc=reliable"
+  register: grub_cfg
+  notify: update grub
+
+- name: Packages
+  ansible.builtin.apt:
+    name: [linux-tools-common, "linux-tools-{{ ansible_kernel }}", cpufrequtils, bpftrace, irqbalance]
+    state: present
+    update_cache: true
+
+- name: Stop irqbalance (it would undo IRQ pinning)
+  ansible.builtin.systemd:
+    name: irqbalance
+    state: stopped
+    enabled: false
+
+- name: Install tuning scripts
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../systemd/{{ item }}"
+    dest: "/usr/local/sbin/{{ item }}"
+    mode: "0755"
+  loop: [benchgate-tune.sh, benchgate-irq-pin.sh]
+
+- name: Tuning environment
+  ansible.builtin.template:
+    src: benchgate-tune.env.j2
+    dest: /etc/default/benchgate-tune
+    mode: "0644"
+  notify: restart tuning
+
+- name: Install systemd units
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/../systemd/{{ item }}"
+    dest: "/etc/systemd/system/{{ item }}"
+    mode: "0644"
+  loop: [benchgate-tune.service, benchgate-irq-pin.service, benchgate-irq-pin.timer]
+  notify: restart tuning
+
+- name: Enable units
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    daemon_reload: true
+  loop: [benchgate-tune.service, benchgate-irq-pin.timer]
+
+- name: Kubelet static CPU manager, reserving the housekeeping cores
+  ansible.builtin.blockinfile:
+    path: /var/lib/kubelet/config.yaml
+    marker: "# {mark} benchgate"
+    block: |
+      cpuManagerPolicy: static
+      reservedSystemCPUs: "{{ housekeeping_cpus }}"
+      cpuCFSQuota: false
+  when: ansible_facts.services is not defined or 'kubelet.service' in ansible_facts.services
+  failed_when: false
+  notify: restart kubelet
+
+- name: Reboot to apply kernel command line
+  ansible.builtin.reboot:
+    reboot_timeout: 900
+  when: grub_cfg.changed and reboot_if_needed
+
+- name: Verify isolation took effect
+  ansible.builtin.command: cat /sys/devices/system/cpu/isolated
+  register: isolated
+  changed_when: false
+  failed_when: isolated.stdout | length == 0

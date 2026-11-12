@@ -1,0 +1,6 @@
+[Unit]
+Description=BenchGate: pin IRQs to housekeeping CPUs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/benchgate-irq-pin.sh
