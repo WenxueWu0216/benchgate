@@ -1,0 +1,6 @@
+workloads/build
+.git
+**/__pycache__
+data
+docs
+*.duckdb

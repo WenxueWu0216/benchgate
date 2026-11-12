@@ -1,0 +1,67 @@
+# The orchestrator creates bench Jobs, reads their pod logs, and owns the
+# per-node Lease objects. It can list nodes cluster-wide to find the bench pool.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: benchgate-orchestrator
+  namespace: benchgate
+---
+# Bench pods need no API access at all (automountServiceAccountToken: false).
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: benchgate-bench
+  namespace: benchgate
+automountServiceAccountToken: false
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: benchgate-orchestrator
+  namespace: benchgate
+rules:
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "get", "list", "watch", "delete"]
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["coordination.k8s.io"]
+    resources: ["leases"]
+    verbs: ["create", "get", "list", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: benchgate-orchestrator
+  namespace: benchgate
+subjects:
+  - kind: ServiceAccount
+    name: benchgate-orchestrator
+    namespace: benchgate
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: benchgate-orchestrator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: benchgate-node-reader
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: benchgate-node-reader
+subjects:
+  - kind: ServiceAccount
+    name: benchgate-orchestrator
+    namespace: benchgate
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: benchgate-node-reader
