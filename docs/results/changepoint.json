@@ -1,0 +1,538 @@
+[
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "clean",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.005,
+    "false_flags_per_1000_commits": 0.041666666666666664,
+    "median_delay": null
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "clean",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.725,
+    "false_flags_per_1000_commits": 20.25,
+    "median_delay": null
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "clean",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": null
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "clean",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.14,
+    "false_flags_per_1000_commits": 1.1666666666666667,
+    "median_delay": null
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step2",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step2",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 0.99,
+    "detection_ci95": [
+      0.9642775148038205,
+      0.9972533993962251
+    ],
+    "false_alarm_history_rate": 0.67,
+    "false_flags_per_1000_commits": 17.5,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step2",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step2",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.225,
+    "false_flags_per_1000_commits": 2.0416666666666665,
+    "median_delay": 1.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step5",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.005,
+    "false_flags_per_1000_commits": 0.041666666666666664,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step5",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.655,
+    "false_flags_per_1000_commits": 18.333333333333332,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step5",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step5",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.215,
+    "false_flags_per_1000_commits": 1.875,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step10",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step10",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.63,
+    "false_flags_per_1000_commits": 14.916666666666666,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step10",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "step10",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.15,
+    "false_flags_per_1000_commits": 1.2916666666666667,
+    "median_delay": 0.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "creep",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 0.215,
+    "detection_ci95": [
+      0.16371792563672208,
+      0.2770242977367209
+    ],
+    "false_alarm_history_rate": 0.015,
+    "false_flags_per_1000_commits": 0.125,
+    "median_delay": 4.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "creep",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 0.79,
+    "detection_ci95": [
+      0.7283526118460081,
+      0.8407167047213658
+    ],
+    "false_alarm_history_rate": 0.66,
+    "false_flags_per_1000_commits": 15.208333333333334,
+    "median_delay": 2.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "creep",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.0,
+    "false_flags_per_1000_commits": 0.0,
+    "median_delay": 1.0
+  },
+  {
+    "model": "tuned-bare-metal",
+    "scenario": "creep",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.165,
+    "false_flags_per_1000_commits": 1.5,
+    "median_delay": 3.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "clean",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.62,
+    "false_flags_per_1000_commits": 8.083333333333334,
+    "median_delay": null
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "clean",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.98,
+    "false_flags_per_1000_commits": 75.79166666666667,
+    "median_delay": null
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "clean",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.005,
+    "false_flags_per_1000_commits": 0.041666666666666664,
+    "median_delay": null
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "clean",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": null,
+    "detection_ci95": null,
+    "false_alarm_history_rate": 0.1,
+    "false_flags_per_1000_commits": 0.8333333333333334,
+    "median_delay": null
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step2",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 0.42,
+    "detection_ci95": [
+      0.3537348235017175,
+      0.48928053744521394
+    ],
+    "false_alarm_history_rate": 0.545,
+    "false_flags_per_1000_commits": 6.5,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step2",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 0.87,
+    "detection_ci95": [
+      0.8163353692726989,
+      0.9097185863477437
+    ],
+    "false_alarm_history_rate": 0.98,
+    "false_flags_per_1000_commits": 63.166666666666664,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step2",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 0.94,
+    "detection_ci95": [
+      0.8980673646931491,
+      0.9653481500987285
+    ],
+    "false_alarm_history_rate": 0.065,
+    "false_flags_per_1000_commits": 0.5416666666666666,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step2",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 0.99,
+    "detection_ci95": [
+      0.9642775148038205,
+      0.9972533993962251
+    ],
+    "false_alarm_history_rate": 0.175,
+    "false_flags_per_1000_commits": 1.5,
+    "median_delay": 5.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step5",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 0.99,
+    "detection_ci95": [
+      0.9642775148038205,
+      0.9972533993962251
+    ],
+    "false_alarm_history_rate": 0.565,
+    "false_flags_per_1000_commits": 6.375,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step5",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 0.99,
+    "detection_ci95": [
+      0.9642775148038205,
+      0.9972533993962251
+    ],
+    "false_alarm_history_rate": 0.995,
+    "false_flags_per_1000_commits": 62.041666666666664,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step5",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.015,
+    "false_flags_per_1000_commits": 0.125,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step5",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.205,
+    "false_flags_per_1000_commits": 1.8333333333333333,
+    "median_delay": 1.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step10",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.535,
+    "false_flags_per_1000_commits": 6.666666666666667,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step10",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 1.0,
+    "false_flags_per_1000_commits": 66.04166666666667,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step10",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.01,
+    "false_flags_per_1000_commits": 0.08333333333333333,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "step10",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.21,
+    "false_flags_per_1000_commits": 1.9166666666666667,
+    "median_delay": 0.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "creep",
+    "detector": "pairwise-paired",
+    "trials": 200,
+    "detection_rate": 0.32,
+    "detection_ci95": [
+      0.2592642960770526,
+      0.38752026605354306
+    ],
+    "false_alarm_history_rate": 0.46,
+    "false_flags_per_1000_commits": 5.583333333333333,
+    "median_delay": 5.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "creep",
+    "detector": "pairwise-unpaired",
+    "trials": 200,
+    "detection_rate": 0.89,
+    "detection_ci95": [
+      0.8390720169908702,
+      0.9262280983928396
+    ],
+    "false_alarm_history_rate": 0.995,
+    "false_flags_per_1000_commits": 54.458333333333336,
+    "median_delay": 2.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "creep",
+    "detector": "pelt",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.015,
+    "false_flags_per_1000_commits": 0.125,
+    "median_delay": 4.0
+  },
+  {
+    "model": "untuned-cloud-vm",
+    "scenario": "creep",
+    "detector": "cusum",
+    "trials": 200,
+    "detection_rate": 1.0,
+    "detection_ci95": [
+      0.9811539940816791,
+      1.0
+    ],
+    "false_alarm_history_rate": 0.17,
+    "false_flags_per_1000_commits": 1.5,
+    "median_delay": 6.0
+  }
+]
