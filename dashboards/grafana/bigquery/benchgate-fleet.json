@@ -1,0 +1,212 @@
+{
+  "uid": "bg-fleet-bigquery",
+  "title": "BenchGate · fleet (bigquery)",
+  "tags": [
+    "benchgate",
+    "fleet"
+  ],
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "grafana-bigquery-datasource",
+        "label": "Data source",
+        "hide": 0
+      },
+      {
+        "name": "project",
+        "type": "textbox",
+        "query": "my-project",
+        "label": "GCP project"
+      },
+      {
+        "name": "dataset",
+        "type": "textbox",
+        "query": "benchgate",
+        "label": "Dataset"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "barchart",
+      "title": "Per-node offset vs fleet median (matrix p50)",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "WITH per_node AS ( SELECT node, APPROX_QUANTILES(p50_ns, 100)[OFFSET(50)] AS p50 FROM `${project}.${dataset}.runs` WHERE workload = 'matrix' AND $__timeFilter(started_at) GROUP BY node) SELECT node, 100 * (p50 / (SELECT APPROX_QUANTILES(p50, 100)[OFFSET(50)] FROM per_node) - 1) AS offset_pct FROM per_node ORDER BY node",
+          "format": "table",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "options": {},
+      "description": "A node drifting away from the fleet (thermal, firmware, a missed tuning step) shows up here before it causes false alarms."
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Scheduling jitter p99 by node",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT started_at AS time, node, sched_jitter_p99_us FROM `${project}.${dataset}.runs` WHERE $__timeFilter(started_at) AND sched_jitter_p99_us IS NOT NULL ORDER BY time",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "µs"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 3,
+      "type": "piechart",
+      "title": "Job outcomes",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT state, count(*) AS jobs FROM `${project}.${dataset}.jobs` WHERE $__timeFilter(created_at) GROUP BY state",
+          "format": "table",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "type": "histogram",
+      "title": "Attempts per job (retries)",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT attempts FROM `${project}.${dataset}.jobs` WHERE $__timeFilter(created_at)",
+          "format": "table",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Runs per hour",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 9,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT TIMESTAMP_TRUNC(started_at, HOUR) AS time, count(*) AS runs FROM `${project}.${dataset}.runs` WHERE $__timeFilter(started_at) GROUP BY 1 ORDER BY 1",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    }
+  ]
+}

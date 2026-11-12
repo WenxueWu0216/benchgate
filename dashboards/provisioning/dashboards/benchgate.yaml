@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: benchgate
+    folder: BenchGate
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards/benchgate

@@ -1,0 +1,291 @@
+{
+  "uid": "bg-module-planner-bigquery",
+  "title": "BenchGate · module · planner (bigquery)",
+  "tags": [
+    "benchgate",
+    "module",
+    "planner"
+  ],
+  "timezone": "utc",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "time": {
+    "from": "now-30d",
+    "to": "now"
+  },
+  "refresh": "5m",
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "grafana-bigquery-datasource",
+        "label": "Data source",
+        "hide": 0
+      },
+      {
+        "name": "project",
+        "type": "textbox",
+        "query": "my-project",
+        "label": "GCP project"
+      },
+      {
+        "name": "dataset",
+        "type": "textbox",
+        "query": "benchgate",
+        "label": "Dataset"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "p50 / p99 per commit (median over runs)",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT min(started_at) AS time, APPROX_QUANTILES(p50_ns, 100)[OFFSET(50)] / 1000 AS p50_us, APPROX_QUANTILES(p99_ns, 100)[OFFSET(50)] / 1000 AS p99_us FROM `${project}.${dataset}.runs` WHERE workload = 'planner' AND $__timeFilter(started_at) AND slowdown_mode = 'none' GROUP BY commit ORDER BY time",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "µs"
+        },
+        "overrides": []
+      },
+      "options": {},
+      "description": "Each point is one commit: the median of its runs' p50/p99. Steps here are what change-point detection looks for."
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Run-to-run noise: CV of per-run p50, per commit",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 9,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT min(started_at) AS time, 100 * STDDEV_SAMP(p50_ns) / avg(p50_ns) AS cv_pct, count(*) AS runs FROM `${project}.${dataset}.runs` WHERE workload = 'planner' AND $__timeFilter(started_at) GROUP BY commit ORDER BY time",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "options": {},
+      "description": "If this rises, the fleet got noisier and the gate loses power (see docs/results/detection.md)."
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Scheduling jitter p99 (timer probe)",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 9,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT started_at AS time, sched_jitter_p99_us AS jitter_p99_us, node FROM `${project}.${dataset}.runs` WHERE workload = 'planner' AND $__timeFilter(started_at) AND sched_jitter_p99_us IS NOT NULL ORDER BY time",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "µs"
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "CPU utilization / involuntary context switches",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 17,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT started_at AS time, cpu_utilization, involuntary_cs FROM `${project}.${dataset}.runs` WHERE workload = 'planner' AND $__timeFilter(started_at) AND cpu_utilization IS NOT NULL ORDER BY time",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Memory bandwidth (perf) / IPC",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 17,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT started_at AS time, mem_bw_gbps, ipc FROM `${project}.${dataset}.runs` WHERE workload = 'planner' AND $__timeFilter(started_at) AND (mem_bw_gbps IS NOT NULL OR ipc IS NOT NULL) ORDER BY time",
+          "format": "time_series",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {},
+      "description": "Empty where perf counters are unavailable (VMs without a PMU)."
+    },
+    {
+      "id": 6,
+      "type": "table",
+      "title": "Verdicts for this workload",
+      "datasource": {
+        "type": "grafana-bigquery-datasource",
+        "uid": "${datasource}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-bigquery-datasource",
+            "uid": "${datasource}"
+          },
+          "rawSql": "SELECT created_at, head_commit, base_commit, metric, round(100 * rel_change, 2) AS change_pct, round(100 * ci_low, 2) AS ci_low_pct, round(100 * ci_high, 2) AS ci_high_pct, p_adjusted, verdict FROM `${project}.${dataset}.verdict_tests` WHERE workload = 'planner' AND $__timeFilter(created_at) ORDER BY created_at DESC LIMIT 200",
+          "format": "table",
+          "editorMode": "code",
+          "rawQuery": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "verdict"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "regression": {
+                        "color": "red",
+                        "index": 0
+                      },
+                      "pass": {
+                        "color": "green",
+                        "index": 1
+                      },
+                      "inconclusive": {
+                        "color": "orange",
+                        "index": 2
+                      },
+                      "improvement": {
+                        "color": "blue",
+                        "index": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {}
+    }
+  ]
+}
